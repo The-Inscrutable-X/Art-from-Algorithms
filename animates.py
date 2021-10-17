@@ -19,3 +19,4 @@ class a_left_right():
   def coords(self):
     self._coords = [(self.xs[i],self.ys[i]) for i in range(len(self._coords))]
     return self._coords
+

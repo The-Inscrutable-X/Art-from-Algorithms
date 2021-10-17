@@ -1,10 +1,19 @@
 import turtle as trtl 
 import process_img
 import animates
+import turtle_test
+
+process_img.convert_to_gif(['2p.jpeg'])
 
 # make backgrounds
-bg1 = process_img.BackgroundImg('test_import.gif')
+bg1 = process_img.BackgroundImg('2p.gif')
 path1 = bg1.path
+
+# test viewing port
+#bg1.cell_shade()
+bg1.sample_coords(10)
+bg1.save()
+path1 = 'cs_' + bg1.path
 
 # setup screen
 wn = trtl.Screen()
@@ -16,8 +25,10 @@ print('done')
 #wn.addshape()
 
 # test case
-Turt = trtl.Turtle()
-Turt.forward(1)
+#Turt = trtl.Turtle()
+#Turt.color('blue')
+#Turt.turtlesize(2)
+#turtle_test.move(Turt)
 
 # animate three squares
 '''
