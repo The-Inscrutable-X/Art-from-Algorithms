@@ -29,7 +29,6 @@ class SampleTurtles():
 
   # make and stamp pixels, shape and size are arguments
   def t_stamp(self, turtle_size, turtle_shape):
-    turtle_size = .1
 
     color_turtles = []
     print('in t_stamp')
@@ -37,7 +36,7 @@ class SampleTurtles():
       turtle = trtl.Turtle()
       turtle.color(color[0:3])
       turtle.shape(turtle_shape)
-      turtle.speed(10000)
+      turtle.speed(1000000)
       turtle.resizemode("auto")
       #turtle.pensize(.1)
       turtle.shapesize(turtle_size)

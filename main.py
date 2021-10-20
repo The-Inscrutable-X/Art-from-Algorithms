@@ -3,28 +3,51 @@ import process_img
 import animates
 import turtle_test
 
+# temporary jpeg to gif converter
 process_img.convert_to_gif(['2pp.jpeg'])
 
-# make backgrounds
-bg1 = process_img.BackgroundImg('cs_2.gif')
-path1 = bg1.path
+# how many unique pictures do you have plus 1?
+pict_number = 4
 
-# test viewing port
+# init color palets
+colors = [
+[(96,60,20,255),(212,91,18,255),(243,188,46,255),(95,84,38,255),(156,39,6,255)],
+
+[(96,60,20,255),(212,91,18,255),(243,188,46,255),(95,84,38,255),(156,39,6,255)],
+]
+# prompt image selection
+choice = input('choose a number 1-27', )
+choice = int(choice)
+choice_mod = str(choice%pict_number)
+# make backgrounds
+bg1 = process_img.BackgroundImg('cs_'+choice_mod+'.gif', colors[choice//pict_number])
+
+# convert choice into a string
+path1 = bg1.path
+print('start bg:', path1)
+
 #bg1.cell_shade()
 #bg1.save()
 
-path1 = bg1.path
-
-# setup screen
+# turtle related operations: make screen, sample image, draw using turtles
 wn = trtl.Screen()
 wn.colormode(255)
-print('start bg:', path1)
-
+wn.bgpic(choice_mod+'.gif')
+samples = bg1.sample_coords(500)
+SampleTurts = animates.SampleTurtles(samples)
+SampleTurts.t_stamp(.2, 'circle')
+#wn.clear()
 #wn.bgpic(path1)
+wn.bgpic('nopic')
+#SampleTurts.t_stamp(.1, 'circle')
 
-SampleTurts = animates.SampleTurtles(bg1.sample_coords(5000))
-SampleTurts.t_stamp(5, 'circle')
+
+
+
+
 print('done')
+
+
 #image = "test_import.png"
 #wn.addshape()
 

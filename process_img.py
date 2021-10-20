@@ -18,10 +18,10 @@ def convert_to_gif(path):
 
 class BackgroundImg:
   # posting a local image file:
-  def __init__(self, path):
+  def __init__(self, path, colors):
     self.path = path
     self.image = imread(self.path)
-    self.colors = [(96,60,20,255),(212,91,18,255),(243,188,46,255),(95,84,38,255),(156,39,6,255)]
+    self.colors = colors
 
     # state trackers
     self.shaded = True
@@ -111,6 +111,7 @@ class BackgroundImg:
   # samples number amount of coords and their colors
   def sample_coords(self, number):
     shape = self.image.shape
+    print(shape)
     if self.shaded == True:
       # prepare sample coords dict keyed by color
       samples = dict(zip(self.colors, [[] for i in self.colors]))
@@ -118,10 +119,15 @@ class BackgroundImg:
         y = random.randint(0, shape[0]-1)
         x = random.randint(0, shape[1]-1)
 
+        #identify color
         color = tuple(self.image[y, x, :])
-        #print('sample', color)
 
-        samples[color].append((x,-y))
+        #adjust to be on top of background
+        y = (-y+shape[0]/2)
+        #y = -y
+        x -= shape[1]/2
+        # append colors
+        samples[color].append((x,y))
 
     elif self.shaded == False:
 
