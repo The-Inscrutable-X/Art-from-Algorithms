@@ -3,23 +3,27 @@ import process_img
 import animates
 import turtle_test
 
-process_img.convert_to_gif(['2p.jpeg'])
+process_img.convert_to_gif(['2pp.jpeg'])
 
 # make backgrounds
-bg1 = process_img.BackgroundImg('2p.gif')
+bg1 = process_img.BackgroundImg('cs_2.gif')
 path1 = bg1.path
 
 # test viewing port
 #bg1.cell_shade()
-bg1.sample_coords(10)
-bg1.save()
-path1 = 'cs_' + bg1.path
+#bg1.save()
+
+path1 = bg1.path
 
 # setup screen
 wn = trtl.Screen()
+wn.colormode(255)
 print('start bg:', path1)
 
-wn.bgpic(path1)
+#wn.bgpic(path1)
+
+SampleTurts = animates.SampleTurtles(bg1.sample_coords(5000))
+SampleTurts.t_stamp(5, 'circle')
 print('done')
 #image = "test_import.png"
 #wn.addshape()

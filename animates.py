@@ -20,3 +20,51 @@ class a_left_right():
     self._coords = [(self.xs[i],self.ys[i]) for i in range(len(self._coords))]
     return self._coords
 
+class SampleTurtles():
+  def __init__(self, samples):
+    self.samples = samples
+    self.colors = []
+  def make_gen(self):
+    pass
+
+  # make and stamp pixels, shape and size are arguments
+  def t_stamp(self, turtle_size, turtle_shape):
+    turtle_size = .1
+
+    color_turtles = []
+    print('in t_stamp')
+    for color in self.samples:
+      turtle = trtl.Turtle()
+      turtle.color(color[0:3])
+      turtle.shape(turtle_shape)
+      turtle.speed(10000)
+      turtle.resizemode("auto")
+      #turtle.pensize(.1)
+      turtle.shapesize(turtle_size)
+      turtle.penup()
+      color_turtles.append(turtle)
+      self.colors.append(color)
+      #print('self samples', self.samples)
+    print(color_turtles)
+
+    color_cycle = 0
+    while True:
+      if len(color_turtles) == 0:
+        print('breaking')
+        break
+      for i, turtle in enumerate(color_turtles):
+        #print('looping')
+        try:
+          turtle.goto(self.samples[self.colors[i]][color_cycle])
+          #print('stamping')
+          turtle.stamp()
+          #print(coord)
+
+        # if it isn't in the index destroy the turle, its job is done
+        except:
+          color_turtles.remove(turtle)
+          #print('removing')
+      color_cycle += 1
+
+
+

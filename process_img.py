@@ -24,7 +24,7 @@ class BackgroundImg:
     self.colors = [(96,60,20,255),(212,91,18,255),(243,188,46,255),(95,84,38,255),(156,39,6,255)]
 
     # state trackers
-    self.shaded = False   
+    self.shaded = True
 
     # debugging, turns off deepai usage
     if False:
@@ -46,7 +46,9 @@ class BackgroundImg:
   def save(self):
     self.image = self.image.astype(np.uint8)
     print('image data type', (type(self.image)), self.image.shape)
-    imsave(('cs_' + self.path), self.image)
+    self.path = ('cs_' + self.path)
+    imsave(self.path, self.image)
+    
     
 
   def pixel_clamp_cs(self, pixel):
@@ -113,13 +115,13 @@ class BackgroundImg:
       # prepare sample coords dict keyed by color
       samples = dict(zip(self.colors, [[] for i in self.colors]))
       for i in range(number):
-        x = random.randint(0, shape[0])
-        y = random.randint(0, shape[1])
+        y = random.randint(0, shape[0]-1)
+        x = random.randint(0, shape[1]-1)
 
-        color = tuple(self.image[x, y, :])
-        print('sample', color)
+        color = tuple(self.image[y, x, :])
+        #print('sample', color)
 
-        samples[color].append((x,y))
+        samples[color].append((x,-y))
 
     elif self.shaded == False:
 
@@ -130,11 +132,10 @@ class BackgroundImg:
         x = random.randint(0, shape[0])
         y = random.randint(0, shape[1])
 
-        color = tuple(self.image[x, y, :])
+        color = tuple(self.image[x-1, y-1, :])
         colors.append(color)
         coords.append((x,y))
       samples = dict(zip(colors, coords))
 
-    print(samples)
+    #print(samples)
     return samples
-
