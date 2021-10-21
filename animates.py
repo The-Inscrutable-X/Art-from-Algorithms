@@ -55,6 +55,7 @@ class SampleTurtles():
         #print('looping')
         try:
           turtle.goto(self.samples[self.colors[i]][color_cycle])
+          turtle.right(50)
           #print('stamping')
           turtle.stamp()
           #print(coord)
@@ -64,6 +65,3 @@ class SampleTurtles():
           color_turtles.remove(turtle)
           #print('removing')
       color_cycle += 1
-
-
-

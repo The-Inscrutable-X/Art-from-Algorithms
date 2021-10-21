@@ -1,33 +1,25 @@
 {
   "files": {
-    "animates.py": [
-      {
-        "id": "4726da05-0aae-4e0f-8137-c33855b15539",
-        "line": 58,
-        "version": 1935,
-        "index": 1579
-      }
-    ],
     "main.py": [
       {
         "id": "ca74505d-4751-48cd-9bea-433ead618173",
         "line": 1,
-        "version": 3129,
+        "version": 3684,
         "index": 0
       },
       {
         "id": "18b26516-8cec-4c9b-bad7-528f639fce3d",
-        "line": 14,
-        "version": 3129,
-        "index": 261
+        "line": 23,
+        "version": 3684,
+        "index": 545
       }
     ],
     "process_img.py": [
       {
         "id": "0eb417a0-eeb3-44d0-8422-1ee7a02897df",
-        "line": 12,
-        "version": 5338,
-        "index": 238
+        "line": 15,
+        "version": 5464,
+        "index": 280
       }
     ]
   }

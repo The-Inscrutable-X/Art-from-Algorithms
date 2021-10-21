@@ -6,6 +6,9 @@ from urllib.request import urlretrieve
 from PIL import Image
 import random
 
+class CustomException(Exception):
+  pass
+
 # convert to gif
 def convert_to_gif(path):
   for i in path:
@@ -127,7 +130,10 @@ class BackgroundImg:
         #y = -y
         x -= shape[1]/2
         # append colors
-        samples[color].append((x,y))
+        try:
+          samples[color].append((x,y))
+        except KeyError as e:
+          raise CustomException('cell shading incomplete') from e
 
     elif self.shaded == False:
 
