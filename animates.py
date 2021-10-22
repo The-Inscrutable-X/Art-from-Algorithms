@@ -24,6 +24,7 @@ class SampleTurtles():
   def __init__(self, samples):
     self.samples = samples
     self.colors = []
+    print(f'Brace! Turtles will appear')
   def make_gen(self):
     pass
 
@@ -31,12 +32,12 @@ class SampleTurtles():
   def t_stamp(self, turtle_size, turtle_shape):
 
     color_turtles = []
-    print('in t_stamp')
+    #print('in t_stamp')
     for color in self.samples:
       turtle = trtl.Turtle()
       turtle.color(color[0:3])
       turtle.shape(turtle_shape)
-      turtle.speed(1000000)
+      turtle.speed(100000)
       turtle.resizemode("auto")
       #turtle.pensize(.1)
       turtle.shapesize(turtle_size)
@@ -44,7 +45,7 @@ class SampleTurtles():
       color_turtles.append(turtle)
       self.colors.append(color)
       #print('self samples', self.samples)
-    print(color_turtles)
+    #print(color_turtles)
 
     color_cycle = 0
     while True:

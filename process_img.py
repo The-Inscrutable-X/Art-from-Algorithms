@@ -2,9 +2,15 @@ import numpy as np
 import requests
 from skimage import data
 from skimage.io import imread, imsave
+from skimage.transform import rescale
 from urllib.request import urlretrieve
 from PIL import Image
 import random
+
+# temporary rescaling operation
+#image = imread('1large.gif')
+#image_rescaled = rescale(image, 0.25, anti_aliasing=False)
+#imsave('1.gif', image_rescaled)
 
 class CustomException(Exception):
   pass
@@ -49,11 +55,11 @@ class BackgroundImg:
   def save(self):
     self.image = self.image.astype(np.uint8)
     print('image data type', (type(self.image)), self.image.shape)
-    self.path = ('cs_' + self.path)
-    imsave(self.path, self.image)
+    #self.path = ('cs_' + self.path)
+    imsave('cs_' + self.path, self.image)
     
     
-
+  # compares a pixel and returns the closest color from self.colors, this is the key to the color clamping technique
   def pixel_clamp_cs(self, pixel):
 
     '''
