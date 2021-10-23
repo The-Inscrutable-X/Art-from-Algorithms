@@ -4,7 +4,7 @@ import animates
 import turtle_test
 
 # temporary jpeg to gif converter
-process_img.convert_to_gif(['5.jpg'])
+process_img.convert_to_gif(['3.jpeg'])
 
 # how many unique pictures do you have?
 pict_number = 5
@@ -21,16 +21,18 @@ colors = [
 
 [(255,255,255,255),(0,0,0,255)]
 ]
+
 # prompt image selection
-choice = input('choose a number 1-25', )
+choice = input('choose a number 1-25: ', )
 choice = int(choice)-1
 choice_mod = str(choice%pict_number+1)
+
 # make backgrounds
 bg1 = process_img.BackgroundImg(''+choice_mod+'.gif', colors[choice//pict_number])
 
 # convert choice into a string
 path1 = bg1.path
-print('start bg:', path1)
+print('image selected:', path1)
 
 bg1.cell_shade()
 bg1.save()
@@ -39,18 +41,19 @@ bg1.save()
 wn = trtl.Screen()
 wn.colormode(255)
 wn.bgpic(choice_mod+'.gif')
-samples = bg1.sample_coords(int(input('please select the number of turtles that will appear to convert the image, a number between 2000-3000 is recommended: ')))
-SampleTurts = animates.SampleTurtles(samples)
-SampleTurts.t_stamp(float(input('please select the size of turtles [.1 to .3 recommended]: ')), input('please select the shape of the turtle -- circle, turtle, and square are tested: '))
+if input('Do you want to further customize or use the recommended defaults? \n Choose by typing True/False: ').lower() == 'true':
+  samples = bg1.sample_coords(int(input('please select the number of turtles that will appear to convert the image, \n a number between 2000-3000 is recommended: ')))
+  SampleTurts = animates.SampleTurtles(samples)
+  SampleTurts.t_stamp(float(input('please select the size of turtles \n [.1 to .3 recommended]: ')), input('please select the shape of the turtle \n -- circle, turtle, and square are tested: '))
+else:
+  print('using defaults')
+  samples = bg1.sample_coords(3000)
+  SampleTurts = animates.SampleTurtles(samples)
+  SampleTurts.t_stamp()
 #wn.clear()
 #wn.bgpic('cs_' + path1)
 wn.bgpic('nopic')
 #SampleTurts.t_stamp(.1, 'circle')
-
-
-
-
-
 print('done')
 
 
@@ -63,9 +66,9 @@ print('done')
 #Turt.turtlesize(2)
 #turtle_test.move(Turt)
 
-# animate three squares
+# deprecated: animate three squares
 '''
-tri = a_left_right([(1,10),(2,20),(3,30)], 'square')
+tri = animates.a_left_right([(1,10),(2,20),(3,30)], 'square')
 for i in range(100):
   tri.next()
   for x,i in enumerate(tri.coords()):

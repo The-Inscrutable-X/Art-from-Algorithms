@@ -24,12 +24,12 @@ class SampleTurtles():
   def __init__(self, samples):
     self.samples = samples
     self.colors = []
-    print(f'Brace! Turtles will appear')
+    print(f'Brace. Turtles will appear!')
   def make_gen(self):
     pass
 
   # make and stamp pixels, shape and size are arguments
-  def t_stamp(self, turtle_size, turtle_shape):
+  def t_stamp(self, turtle_size=.1, turtle_shape='circle'):
 
     color_turtles = []
     #print('in t_stamp')
@@ -50,7 +50,7 @@ class SampleTurtles():
     color_cycle = 0
     while True:
       if len(color_turtles) == 0:
-        print('breaking')
+        print('breaking, exiting color loop')
         break
       for i, turtle in enumerate(color_turtles):
         #print('looping')

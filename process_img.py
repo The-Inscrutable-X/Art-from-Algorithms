@@ -23,7 +23,7 @@ def convert_to_gif(path):
         img = Image.open(i)
         img.save(i.split('.')[0]+".gif")
       except:
-        print(i , 'does not exist')
+        print(i , 'does not exist, or is already converted to a gif')
 
 class BackgroundImg:
   # posting a local image file:
@@ -54,9 +54,10 @@ class BackgroundImg:
   # save to separate file
   def save(self):
     self.image = self.image.astype(np.uint8)
-    print('image data type', (type(self.image)), self.image.shape)
-    #self.path = ('cs_' + self.path)
+
     imsave('cs_' + self.path, self.image)
+
+    print('image saved at', 'cs_' + self.path)
     
     
   # compares a pixel and returns the closest color from self.colors, this is the key to the color clamping technique
@@ -113,9 +114,9 @@ class BackgroundImg:
     self.counter = 0
     self.shaded = True
 
-    print(self.image[0:1,0:10,:])
+    #print(self.image[0:1,0:10,:])
     self.image = np.apply_along_axis(self.pixel_clamp_cs, 2, self.image)
-    print('2nd' , self.image[0:1,0:10,:])
+    #print('2nd' , self.image[0:1,0:10,:])
 
   # samples number amount of coords and their colors
   def sample_coords(self, number):
